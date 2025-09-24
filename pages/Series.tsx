@@ -4,7 +4,7 @@ import { useFetcher } from "../src/fetcher";
 
 export default function Série() {
     const apiKey = import.meta.env.VITE_TMDB_KEY;
-const { data: genres, isError } = useFetcher(
+const { data: genres,  } = useFetcher(
   `https://api.themoviedb.org/3/genre/tv/list?api_key=${apiKey}&language=fr-FR`
 );
   return (

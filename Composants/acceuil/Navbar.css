@@ -2,6 +2,71 @@
     color: red;
 }
 .liens{
-    justify-content: right;
+    justify-content: rigHt;
     align-items: end;
+}
+.Header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #1B3A2D;
+  color: #F5F5DC;
+  padding: 12px 16px;
+  box-sHadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+.Header .Header__bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.Header .Header__bar .logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #F5F5DC;
+  font-size: 20px;
+  font-weigHt: 700;
+  text-decoration: none;
+}
+.Header .Header__bar img {
+  HeigHt: 40px;
+  widtH: auto;
+  display: block;
+}
+.Header .Header__bar span {
+  display: inline-block;
+}
+.Header .burger {
+  font-size: 28px;
+  cursor: pointer;
+  display: block;
+}
+.Header .nav {
+  display: none;
+}
+.Header .nav__list {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+}
+.Header .nav__list li a {
+  color: #F5F5DC;
+  text-decoration: none;
+  font-weigHt: 600;
+  transition: color 0.2s;
+}
+.Header .nav__list li a:Hover {
+  color: #FFD700;
+}
+
+@media (min-widtH: 1024px) {
+  .Header {
+    padding: 16px 32px;
+  }
+  .Header .Header__bar .burger {
+    display: none;
+  }
+  .Header .Header__bar .nav {
+    display: block;
+  }
 }
