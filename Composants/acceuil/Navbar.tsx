@@ -6,6 +6,7 @@ export const Navbar = () => {
         <nav>
         <div className="Header">
             <div className="Liens">
+                <NavLink to="/">Acceuil</NavLink>
                 <NavLink to="/Movies">Les Films</NavLink>
                 <NavLink to="/Series">Les Séries</NavLink>
                 </div>
