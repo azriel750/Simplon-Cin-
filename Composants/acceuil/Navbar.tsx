@@ -3,20 +3,17 @@ import "./Navbar.css";
 
 export const Navbar = () => {
   return (
-    <nav>
-      <header className="header">
-        <div className="header__bar">
-          <nav className="nav">
-            <ul className="nav__list">
-            <NavLink to="/">Accueil</NavLink>
+    <header className="navbar">
+      <div className="navbar__logo">S</div>
+
+      <nav className="navbar__links">
+        <NavLink to="/">Accueil</NavLink>
         <NavLink to="/Movies">Les Films</NavLink>
         <NavLink to="/Series">Les Séries</NavLink>
-            </ul>
-          </nav>
+      </nav>
 
-          <div className="burger">☰</div>
-        </div>
-      </header>
-      )}
+      <div className="navbar__burger">☰</div>
+    </header>
   );
 };
+

@@ -1,7 +1,6 @@
 import { useFetcher } from "../../src/fetcher";
+import { useNavigate, useParams } from "react-router-dom";
 import "./carousel.css";
-import { useNavigate } from "react-router-dom";
-
 
 type Props = {
   url: string;    
@@ -11,9 +10,11 @@ type Props = {
 export default function Carousel({ url, title }: Props) {
   const { data, isError, isLoading } = useFetcher(url);
   const navigate = useNavigate();
+  const { id } = useParams();
+console.log("Film id:", id);
 
   if (isLoading) return <p>Chargement {title}...</p>;
-  if (isError) return <p>Erreur pour {title} 😢</p>;
+  if (isError) return <p>Erreur pour {title} </p>;
 
   return (
     <div className="carousel">
@@ -23,12 +24,18 @@ export default function Carousel({ url, title }: Props) {
           <div 
             key={movie.id} 
             className="movie-card" 
-            onClick={() => navigate(`/film/${movie.id}`)}
+            
+           onClick={() => {
+  console.log("click movie id:", movie.id);
+  navigate(`/film/${movie.id}`);
+}}
           >
             <img 
-              src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`} 
-              alt={movie.title} 
-            />
+  src={movie.poster_path 
+    ? `https://image.tmdb.org/t/p/w300${movie.poster_path}` 
+    : "/fallback.jpg"} 
+  alt={movie.title} 
+/>
             <p>{movie.title}</p>
           </div>
         ))}

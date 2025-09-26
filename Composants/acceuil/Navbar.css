@@ -1,72 +1,51 @@
-.acceuil{
-    color: red;
+*{
+  
 }
-.liens{
-    justify-content: rigHt;
-    align-items: end;
-}
-.Header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: #1B3A2D;
-  color: #F5F5DC;
-  padding: 12px 16px;
-  box-sHadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-}
-.Header .Header__bar {
+.navbar {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: center;
+  background-color: black; 
+  padding: 12px 16px;
+  color: #fff;
 }
-.Header .Header__bar .logo {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #F5F5DC;
-  font-size: 20px;
-  font-weigHt: 700;
+
+.navbar__logo {
+  font-size: 36px;
+  font-weight: 900;
+  color: #e50914; 
+  cursor: pointer;
+}
+
+.navbar__links {
+  display: none;
+  gap: 20px;
+}
+
+.navbar__links a {
+  color: #fff;
   text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  transition: color 0.2s;
 }
-.Header .Header__bar img {
-  HeigHt: 40px;
-  widtH: auto;
-  display: block;
+
+.navbar__links a:hover {
+  color: #e50914;
 }
-.Header .Header__bar span {
-  display: inline-block;
-}
-.Header .burger {
+
+.navbar__burger {
   font-size: 28px;
   cursor: pointer;
   display: block;
 }
-.Header .nav {
-  display: none;
-}
-.Header .nav__list {
-  list-style: none;
-  display: flex;
-  gap: 24px;
-}
-.Header .nav__list li a {
-  color: #F5F5DC;
-  text-decoration: none;
-  font-weigHt: 600;
-  transition: color 0.2s;
-}
-.Header .nav__list li a:Hover {
-  color: #FFD700;
-}
 
-@media (min-widtH: 1024px) {
-  .Header {
-    padding: 16px 32px;
+@media (min-width: 768px) {
+  .navbar__links {
+    display: flex;
   }
-  .Header .Header__bar .burger {
+
+  .navbar__burger {
     display: none;
-  }
-  .Header .Header__bar .nav {
-    display: block;
   }
 }
