@@ -17,7 +17,7 @@ export default function Home() {
   const bannerMovie = data.results[randomIndex];
 
   const handleClick = () => {
-    navigate(`/film/${bannerMovie.id}`);
+    navigate(`/movie/${bannerMovie.id}`); 
   };
 
   return (
@@ -38,19 +38,23 @@ export default function Home() {
           {bannerMovie.title}
         </h1>
       </div>
+
       <Carousel
         url={`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=fr-FR&page=1`}
         title="Films Populaires"
+        type="movie" 
       />
 
       <Carousel
         url={`https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=fr-FR&page=1`}
         title="Mieux Notés"
+        type="movie" 
       />
 
       <Carousel
         url={`https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}&language=fr-FR&page=1`}
         title="À Venir"
+        type="movie"
       />
     </div>
   );

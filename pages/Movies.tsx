@@ -16,6 +16,7 @@ const { data: genres,  } = useFetcher(
     key={genre.id}
     url={`https://api.themoviedb.org/3/discover/movie?with_genres=${genre.id}&api_key=${apiKey}&language=fr-FR&page=1`}
     title={genre.name}
+    type="movie"
   />
 ))}
   

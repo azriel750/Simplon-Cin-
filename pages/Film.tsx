@@ -1,36 +1,53 @@
+import Carousel from "../Composants/carousel/Carousel";
 import { useParams } from "react-router-dom";
 import { useFetcher } from "../src/fetcher";
 import "./Film.css";
 
+
 export default function Film() {
-  const { id } = useParams<{ id: string }>();
+  const { id } = useParams();
   const apiKey = import.meta.env.VITE_TMDB_KEY;
 
-  const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=fr-FR`;
-  console.log("Fetch URL:", url);
+  const film = useFetcher(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=fr-FR`);
+  const credits = useFetcher(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${apiKey}&language=fr-FR`);
+  const recommendations = useFetcher(`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${apiKey}&language=fr-FR`);
 
-  const { data, isError, isLoading } = useFetcher(url);
-
-  if (isLoading) return <p>Chargement du film...</p>;
-  if (isError) return <p>Erreur lors du chargement du film.</p>;
-
-  console.log("Film data:", data);
-
-  if (!data) return <p>Aucun détail trouvé pour ce film.</p>;
+  if (film.isLoading) return <p>Chargement...</p>;
 
   return (
-    <div className="film-detail" style={{ padding: "2rem" }}>
-      <h1>{data.title}</h1>
-      <p><strong>Date de sortie :</strong> {data.release_date}</p>
-      <p><strong>Note :</strong> {data.vote_average} / 10</p>
-      <p>{data.overview}</p>
-      {data.poster_path && (
-        <img
-          src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
-          alt={data.title}
-          style={{ marginTop: "1rem", borderRadius: "10px" }}
-        />
-      )}
+    <div className="film-detail">
+      <div className="banner" style={{
+        backgroundImage: `url(https://image.tmdb.org/t/p/original${film.data.backdrop_path})`
+      }}>
+        <h1>{film.data.title}</h1>
+        <p>{film.data.overview}</p>
+      </div>
+
+      <div className="info">
+        <p><strong>Genres :</strong> {film.data.genres.map(g => g.name).join(", ")}</p>
+        <p><strong>Note :</strong> {film.data.vote_average} / 10</p>
+        <p><strong>Durée :</strong> {film.data.runtime} min</p>
+        <p><strong>Budget :</strong> {film.data.budget.toLocaleString()} $</p>
+      </div>
+
+      <div className="casting">
+        <h2>Casting</h2>
+        <div className="casting-row">
+          {credits.data?.cast.slice(0, 10).map(actor => (
+            <div key={actor.id} className="actor-card">
+              <img src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`} alt={actor.name} />
+              <p>Interprète:{actor.name}</p>
+              <span>Rôle :{actor.character}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <Carousel
+        url={`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${apiKey}&language=fr-FR`}
+        title="Recommandations"
+        type="movie"
+      />
     </div>
   );
 }
