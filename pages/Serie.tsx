@@ -1,12 +1,12 @@
 import Carousel from "../Composants/carousel/Carousel";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams,  } from "react-router-dom";
 import { useFetcher } from "../src/fetcher";
-import "./Serie.css";
+import "../public/Css/Serie.css";
 
 export default function SerieDetail() {
   const { id } = useParams();
   const apiKey = import.meta.env.VITE_TMDB_KEY;
-  const navigate = useNavigate();
+ 
 
   const serieData = useFetcher(
     `https://api.themoviedb.org/3/tv/${id}?api_key=${apiKey}&language=fr-FR`
@@ -34,6 +34,7 @@ export default function SerieDetail() {
   const recommendations = recommendationsData.data;
 
   return (
+    <div className="body">
     <div className="serie-detail">
       <div
         className="banner"
@@ -87,6 +88,7 @@ export default function SerieDetail() {
           type="tv"
         />
       )}
+    </div>
     </div>
   );
 }

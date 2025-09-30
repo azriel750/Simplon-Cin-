@@ -9,8 +9,7 @@ const { data: genres,  } = useFetcher(
 );
   return (
     <div>
-      <h1> Liste des films</h1>
-      <p>Carrousels des films par genre à venir...</p>
+
 {genres?.genres.slice(0, 5).map((genre) => (
   <Carousel
     key={genre.id}
