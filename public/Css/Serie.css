@@ -1,23 +1,28 @@
-html, body, #root {
+html,
+body,
+#root {
   margin: 0;
   padding: 0;
   background-color: #121212;
   min-height: 100vh;
 }
+
 .serie-detail {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #fff;
   background-color: #121212;
   padding-bottom: 50px;
 }
-.body{
+
+.body {
   background-color: #121212;
 }
+
 .banner {
   position: relative;
   background-size: cover;
   background-position: center;
-  height: 70vh; 
+  height: 70vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -29,7 +34,7 @@ html, body, #root {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(18,18,18,0.95) 20%, rgba(18,18,18,0.6) 50%, rgba(18,18,18,0) 80%);
+  background: linear-gradient(to top, rgba(18, 18, 18, 0.95) 20%, rgba(18, 18, 18, 0.6) 50%, rgba(18, 18, 18, 0) 80%);
   z-index: 1;
 }
 
@@ -38,8 +43,9 @@ html, body, #root {
   position: relative;
   z-index: 2;
   max-width: 700px;
-  text-shadow: 0 3px 10px rgba(0,0,0,0.9);
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.9);
 }
+
 .banner h1 {
   font-size: 3rem;
   font-weight: bold;
@@ -95,13 +101,15 @@ html, body, #root {
 
 .actor-card:hover {
   transform: scale(1.05);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
 
 .actor-card img {
   width: 100%;
   border-radius: 6px;
   margin-bottom: 8px;
+  min-height: 50vh;
+  max-width: 30vh;
 }
 
 .actor-card p {
@@ -141,16 +149,18 @@ html, body, #root {
   .banner h1 {
     font-size: 2rem;
   }
-  
+
   .banner p {
     font-size: 1rem;
   }
-  
+
   .info {
     flex-direction: column;
   }
-  
+
   .actor-card {
     min-width: 120px;
+    min-height: 50vh;
+    max-width: 30vh;
   }
 }

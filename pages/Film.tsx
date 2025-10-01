@@ -7,7 +7,6 @@ import "../public/Css/film.css";
 export default function Film() {
   const { id } = useParams();
   const apiKey = import.meta.env.VITE_TMDB_KEY;
-
   const film = useFetcher(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=fr-FR`);
   const credits = useFetcher(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${apiKey}&language=fr-FR`);
   const recommendations = useFetcher(`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${apiKey}&language=fr-FR`);
