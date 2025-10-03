@@ -1,6 +1,7 @@
 import Carousel from "../Composants/carousel/Carousel";
 import { useParams, useNavigate } from "react-router-dom";
 import { useFetcher } from "../src/fetcher";
+import type { Movie, MovieResponse, Credits } from "./types";
 import "../public/Css/film.css";
 
 export default function Film() {
@@ -8,60 +9,56 @@ export default function Film() {
   const navigate = useNavigate();
   const apiKey = import.meta.env.VITE_TMDB_KEY;
 
-  const film = useFetcher(
+  const film = useFetcher<Movie>(
     `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=fr-FR`
   );
-  const credits = useFetcher(
+  const credits = useFetcher<Credits>(
     `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${apiKey}&language=fr-FR`
   );
-  const recommendations = useFetcher(
+  const recommendations = useFetcher<MovieResponse>(
     `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${apiKey}&language=fr-FR`
   );
 
   if (film.isLoading || credits.isLoading || recommendations.isLoading)
     return <p>Chargement...</p>;
-
   if (!film.data) return <p>Détails non disponibles</p>;
+
+  const movie: Movie = film.data;
+  const cast = credits.data?.cast || [];
+  const recs = recommendations.data?.results || [];
 
   return (
     <div className="film-detail">
-      {/* Bannière */}
       <div
         className="banner"
         style={{
-          backgroundImage: `url(https://image.tmdb.org/t/p/original${film.data?.backdrop_path})`,
+          backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`,
         }}
       >
-        <h1>{film.data?.title}</h1>
-        <p>{film.data?.overview}</p>
+        <h1>{movie.title}</h1>
+        <p>{movie.overview}</p>
       </div>
-
-      {/* Infos principales */}
       <div className="info">
         <p>
           <strong>Genres :</strong>{" "}
-          {film.data?.genres?.map((g: any) => g.name).join(", ") || "Non renseigné"}
+          {movie.genres?.map((g) => g.name).join(", ") || "Non renseigné"}
         </p>
         <p>
-          <strong>Note :</strong> {film.data?.vote_average} / 10
+          <strong>Note :</strong> {movie.vote_average} / 10
         </p>
         <p>
           <strong>Durée :</strong>{" "}
-          {film.data?.runtime ? `${film.data.runtime} min` : "Non renseignée"}
+          {movie.runtime ? `${movie.runtime} min` : "Non renseignée"}
         </p>
         <p>
           <strong>Budget :</strong>{" "}
-          {film.data?.budget
-            ? `${film.data.budget.toLocaleString()} $`
-            : "Inconnu"}
+          {movie.budget ? `${movie.budget.toLocaleString()} $` : "Inconnu"}
         </p>
       </div>
-
-      {/* Casting */}
       <div className="casting">
         <h2>Casting</h2>
         <div className="casting-row">
-          {credits.data?.cast?.slice(0, 10).map((actor: any) => (
+          {cast.slice(0, 10).map((actor) => (
             <div key={actor.id} className="actor-card">
               <img
                 src={
@@ -79,9 +76,9 @@ export default function Film() {
           ))}
         </div>
       </div>
-      {recommendations.data?.results?.length > 0 && (
+      {recs.length > 0 && (
         <Carousel
-          url={`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${apiKey}&language=fr-FR`}
+          items={recs}
           title="Recommandations"
           type="movie"
         />

@@ -1,0 +1,155 @@
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  background-color: #121212;
+  min-height: 100vh;
+}
+.film-detail {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #fff;
+  background-color: #121212;
+  padding-bottom: 50px;
+}
+.banner {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  height: 70vh; 
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 3rem;
+  color: #fff;
+}
+
+.banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(18,18,18,0.95) 20%, rgba(18,18,18,0.6) 50%, rgba(18,18,18,0) 80%);
+  z-index: 1;
+}
+
+.banner h1,
+.banner p {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  text-shadow: 0 3px 10px rgba(0,0,0,0.9);
+}
+.banner h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.banner p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+.info {
+  padding: 20px 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  background-color: #1e1e1e;
+  margin-top: 0px;
+  border-radius: 8px;
+}
+
+.info p {
+  flex: 1 1 200px;
+  font-size: 1rem;
+}
+
+.casting {
+  padding: 30px;
+}
+
+.casting h2 {
+  margin-bottom: 15px;
+  font-size: 2rem;
+}
+
+.casting-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.actor-card {
+  background-color: #1e1e1e;
+  border-radius: 8px;
+  padding: 10px;
+  min-width: 150px;
+  text-align: center;
+  flex: 0 0 auto;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.actor-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+.actor-card img {
+  width: 100%;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  max-height: 50vh;
+  max-width: 30vh;
+}
+
+.actor-card p {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.actor-card span {
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.carousel {
+  margin-top: 40px;
+}
+
+.carousel h2 {
+  margin-bottom: 15px;
+  font-size: 1.8rem;
+  padding-left: 30px;
+}
+
+.casting-row::-webkit-scrollbar {
+  height: 8px;
+}
+
+.casting-row::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border-radius: 4px;
+}
+
+.casting-row::-webkit-scrollbar-track {
+  background-color: #1e1e1e;
+}
+
+@media (max-width: 768px) {
+  .banner h1 {
+    font-size: 2rem;
+  }
+  
+  .banner p {
+    font-size: 1rem;
+  }
+  
+  .info {
+    flex-direction: column;
+  }
+  
+  .actor-card {
+    min-width: 120px;
+  }
+}
