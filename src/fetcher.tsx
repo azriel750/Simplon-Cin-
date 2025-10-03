@@ -1,26 +1,50 @@
 import { useEffect, useState } from "react";
 
-export const useFetcher = (url: string) => {
-  const [data, setData] = useState<any>(null);   
-  const [isError, setIsError] = useState(false); 
-  const [isLoading, setIsLoading] = useState(true); 
+interface FetcherState<T> {
+  data: T | null;
+  isLoading: boolean;
+  isError: boolean;
+}
+
+export function useFetcher<T>(url: string): FetcherState<T> {
+  const [data, setData] = useState<T | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    const fetchData = async () => {
+    let isMounted = true;
+
+    async function fetchData() {
+      setIsLoading(true);
+      setIsError(false);
+
       try {
-        setIsLoading(true);
         const res = await fetch(url);
-        const json = await res.json();
-        setData(json);
-      } catch (error) {
-        setIsError(true);
+        if (!res.ok) {
+          throw new Error(`Erreur réseau: ${res.status}`);
+        }
+        const json = (await res.json()) as T;
+        if (isMounted) {
+          setData(json);
+        }
+      } catch (err) {
+        console.error(err);
+        if (isMounted) {
+          setIsError(true);
+        }
       } finally {
-        setIsLoading(false);
+        if (isMounted) {
+          setIsLoading(false);
+        }
       }
-    };
+    }
 
     fetchData();
-  }, [url]); 
 
-  return { data, isError, isLoading };
-};
+    return () => {
+      isMounted = false;
+    };
+  }, [url]);
+
+  return { data, isLoading, isError };
+}

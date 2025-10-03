@@ -1,10 +1,7 @@
 .carousel {
+  position: relative;
   margin: 20px 0;
-}
-
-.carousel h2 {
-  margin-left: 10px;
-  color: white;
+  width: 100%;
 }
 
 .carousel-row {
@@ -13,23 +10,26 @@
   padding: 10px;
   gap: 10px;
   scrollbar-width: thin;
+  scroll-behavior: smooth;
 }
 
-.movie-card {
-  min-width: 150px;
-  flex-shrink: 0;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-  text-align: center;
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  border: none;
   color: white;
+  font-size: 2rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 5px;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.movie-card img {
-  width: 100%;
-  min-height: 81%;
-  border-radius: 8px;
-}
-
-.movie-card:hover {
-  transform: scale(1.05);
-}
+.carousel-btn.left { left: 0; }
+.carousel-btn.right { right: 0; }

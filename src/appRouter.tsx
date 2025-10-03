@@ -1,11 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Navbar } from "../Composants/acceuil/Navbar";
+import PersonDetail from "../pages/PersonDetail"
 import Home from "../pages/Home";
 import Movies from "../pages/Movies";
 import Series from "../pages/Series"; 
 import Serie from "../pages/Serie"; 
 import Film from "../pages/Film";
 import NotFound from "../pages/NotFound";
-import { Navbar } from "../Composants/acceuil/Navbar";
+
 
 export default function AppRouter() {
   return (
@@ -18,6 +20,7 @@ export default function AppRouter() {
         <Route path="/tv/:id" element={<Serie />} />
         <Route path="/movie/:id" element={<Film />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/person/:id" element={<PersonDetail />} />
       </Routes>
     </Router>
   );

@@ -1,0 +1,87 @@
+.person-detail {
+  color: #fff;
+  background-color: #141414;
+  min-height: 100vh;
+  padding: 1.5rem;
+}
+
+.person-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.person-header img {
+  width: 180px;
+  height: auto;
+  border-radius: 0.75rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+}
+
+.person-info {
+  max-width: 700px;
+}
+
+.person-info h1 {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+}
+
+.person-info p {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+  color: #e0e0e0;
+}
+
+.person-info .bio {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: #ccc;
+  text-align: justify;
+  max-height: 200px;      
+  overflow-y: auto;       
+  padding-right: 0.5rem;
+}
+
+.person-filmography {
+  margin-top: 2rem;
+}
+
+.person-filmography h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  border-left: 4px solid #e50914;
+  padding-left: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .person-header {
+    flex-direction: row;
+    text-align: left;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  .person-header img {
+    width: 280px;
+  }
+
+  .person-info {
+    flex: 1; 
+  }
+
+  .person-info h1 {
+    font-size: 2.5rem;
+  }
+
+  .person-info .bio {
+    max-height: none;   
+    overflow: visible;  
+    font-size: 1rem;
+  }
+}
