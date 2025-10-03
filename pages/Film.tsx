@@ -2,7 +2,7 @@ import Carousel from "../Composants/carousel/Carousel";
 import { useParams, useNavigate } from "react-router-dom";
 import { useFetcher } from "../src/fetcher";
 import type { Movie, MovieResponse, Credits } from "./types";
-import "../public/Css/film.css";
+import "../public/Css/Film.css";
 
 export default function Film() {
   const { id } = useParams();
