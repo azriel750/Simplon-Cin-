@@ -2,7 +2,7 @@ import Carousel from "../Composants/carousel/Carousel";
 import { useNavigate } from "react-router-dom";
 import { useFetcher } from "../src/fetcher";
 import type { MovieResponse, Movie } from "./types";
-import "../public/Css/home.css";
+import "../public/Css/Home.css";
 
 export default function Home() {
   const apiKey = import.meta.env.VITE_TMDB_KEY;
